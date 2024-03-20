@@ -50,6 +50,7 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.mvvm.core)
             api(libs.image.loader)
+
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
