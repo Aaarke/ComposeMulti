@@ -1,11 +1,16 @@
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -27,19 +32,42 @@ fun App() {
 
 @Composable
 fun AppComponent(homeViewModel: HomeViewModel) {
-    val products=homeViewModel.products.collectAsState()
+    val products = homeViewModel.products.collectAsState()
     BoxWithConstraints {
-        val scope=this
-        val maxWidth=scope.maxWidth
-        var cols=2
-        var modifier=Modifier.fillMaxWidth()
-        if (maxWidth>840.dp){
-           cols=3
-           modifier=Modifier.widthIn(max = 1080.dp)
+        val scope = this
+        val maxWidth = scope.maxWidth
+        var cols = 2
+        var modifier = Modifier.fillMaxWidth()
+        if (maxWidth > 840.dp) {
+            cols = 3
+            modifier = Modifier.widthIn(max = 1080.dp)
         }
-        val  scrollState= rememberLazyGridState()
-        Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally){
-            LazyVerticalGrid(columns = GridCells.Fixed(cols)){
+        val scrollState = rememberLazyGridState()
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(cols),
+                state = scrollState,
+                contentPadding = PaddingValues(16.dp)
+            ) {
+                items(items = products.value, key = { product -> product.id }) {
+                    Card(
+                        shape = RoundedCornerShape(15.dp),
+                        modifier = Modifier.padding(8.dp).fillMaxWidth()
+                    ) {
+                        Column(
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                           // val painter =rem
+
+                        }
+
+                    }
+                }
 
             }
         }
