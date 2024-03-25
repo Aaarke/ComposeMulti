@@ -15,7 +15,7 @@ data class Product(
 	@SerialName("description")
 	val description: String? = null,
 	@SerialName("id")
-	val id: Int? = null,
+	val id: Int = 0,
 	@SerialName("title")
 	val title: String? = null,
 	@SerialName("category")
