@@ -10,7 +10,7 @@ androidx-core-ktx = "1.12.0"
 androidx-espresso-core = "3.5.1"
 androidx-material = "1.11.0"
 androidx-test-junit = "1.1.5"
-compose = "1.6.2"
+compose = "1.6.4"
 compose-plugin = "1.6.0"
 imageLoader = "1.7.8"
 junit = "4.13.2"
@@ -22,6 +22,7 @@ ktor = "2.3.9"
 lifecycleViewmodelAndroid = "2.8.0-alpha02"
 mvvmCore = "0.16.1"
 sqlDelightVersion = "1.5.5"
+material3Android = "1.2.1"
 
 [libraries]
 android-driver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqlDelightVersion" }
@@ -51,6 +52,7 @@ ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx
 mvvm-core = { module = "dev.icerock.moko:mvvm-core", version.ref = "mvvmCore" }
 native-driver = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqlDelightVersion" }
 sqlDelightVersion = { module = "com.squareup.sqldelight:runtime", version.ref = "sqlDelightVersion" }
+androidx-material3-android = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3Android" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
