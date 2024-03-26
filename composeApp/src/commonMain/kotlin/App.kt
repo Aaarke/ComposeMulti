@@ -1,26 +1,31 @@
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import org.jetbrains.compose.resources.ExperimentalResourceApi
+import com.seiko.imageloader.rememberImagePainter
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview
 fun App() {
@@ -53,7 +58,10 @@ fun AppComponent(homeViewModel: HomeViewModel) {
                 state = scrollState,
                 contentPadding = PaddingValues(16.dp)
             ) {
-                items(items = products.value, key = { product -> product.id }) {
+                item(span = {GridItemSpan(cols)}){
+                }
+
+                items(items = products.value, key = { product -> product.id }) { product ->
                     Card(
                         shape = RoundedCornerShape(15.dp),
                         modifier = Modifier.padding(8.dp).fillMaxWidth()
@@ -62,7 +70,20 @@ fun AppComponent(homeViewModel: HomeViewModel) {
                             verticalArrangement = Arrangement.Center,
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
-                           // val painter =rem
+                            val painter = rememberImagePainter(url = product.image.toString())
+                            Image(
+                                painter = painter,
+                                modifier = Modifier.height(130.dp).padding(8.dp),
+                                contentDescription = product.title
+                            )
+                            Text(
+                                product.title.toString(),
+                                maxLines = 2,
+                                overflow = TextOverflow.Ellipsis,
+                                modifier = Modifier.padding(16.dp).heightIn(min = 40.dp)
+                            )
+
+
 
                         }
 

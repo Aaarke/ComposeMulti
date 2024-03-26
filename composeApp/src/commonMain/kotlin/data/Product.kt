@@ -9,7 +9,7 @@ data class Product(
 	@SerialName("image")
 	val image: String? = null,
 	@SerialName("price")
-	val price: Int? = null,
+	val price: Double? = null,
 	@SerialName("rating")
 	val rating: Rating? = null,
 	@SerialName("description")
@@ -24,7 +24,7 @@ data class Product(
 @Serializable
 data class Rating(
 	@SerialName("rate")
-	val rate: Int? = null,
+	val rate: Double? = null,
 	@SerialName("count")
 	val count: Int? = null
 )
